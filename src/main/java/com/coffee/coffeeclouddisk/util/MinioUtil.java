@@ -1,31 +1,46 @@
 package com.coffee.coffeeclouddisk.util;
 
+import com.coffee.coffeeclouddisk.config.MinioConfig;
 import io.minio.MinioClient;
-import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import io.minio.ObjectWriteResponse;
+import io.minio.PutObjectArgs;
+import io.minio.errors.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
 
 /**
  * @author Nebula
  * @Description TODO
  * @date 2023/3/22 20:55
  */
-@Data
-public class MinioUtil {
-    @Value("${ipAddress}")
-    private static String ipAddress;
-    @Value("${port}")
-    private static int port;
-    @Value("${accessKey}")
-    private static String accessKey;
-    @Value("${secretKey}")
-    private static String secretKey;
-    @Value("${secure}")
-    private static boolean secure;
 
-    public static MinioClient getMinioClient() {
-        return MinioClient.builder().endpoint(ipAddress, port, secure).credentials(accessKey, secretKey).build();
+public class MinioUtil {
+    public static MinioClient getMinioClient(){
+        return MinioClient.builder().endpoint(MinioConfig.ipAddress,MinioConfig.port,MinioConfig.secure).credentials(MinioConfig.accessKey,MinioConfig.secretKey).build();
     }
+
+    public static String postFile(MultipartFile multipartFile, String uuidName,MinioClient minioClient){
+        ObjectWriteResponse objectWriteResponse;
+        try {
+            InputStream stream = multipartFile.getInputStream();
+            objectWriteResponse = minioClient.putObject(
+                    PutObjectArgs.builder()
+                            .bucket("coffee-cloud-disk")
+                            .object(uuidName)
+                            .contentType(multipartFile.getContentType())
+                            .stream(stream,stream.available(),-1)
+                            .build());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return objectWriteResponse.object();
+    }
+
+
+
 }

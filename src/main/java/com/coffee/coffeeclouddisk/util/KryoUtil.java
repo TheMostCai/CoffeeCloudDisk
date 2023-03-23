@@ -17,7 +17,7 @@ public class KryoUtil {
      * Kryo连接池的最大容量，未实装
      */
     @Value("${kryoInstancePoolCapacity}")
-    public static int kryoPoolCapacity;
+    public static int kryoInstancePoolCapacity;
     @Value("${kryoOutputPoolCapacity}")
     public static int kryoOutputPoolCapacity;
     @Value("${kryoInputPoolCapacity}")
@@ -26,6 +26,7 @@ public class KryoUtil {
      * Kryo连接池
      */
     public static Pool<Kryo> kryoPool = new Pool<Kryo>(true,false) {
+
         @Override
         protected Kryo create() {
             return new Kryo();

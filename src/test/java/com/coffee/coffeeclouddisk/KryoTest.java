@@ -10,6 +10,7 @@ import com.esotericsoftware.kryo.kryo5.util.Pool;
 import io.minio.MinioClient;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,7 +25,7 @@ import java.util.HashMap;
  */
 public class KryoTest {
 
-    MinioClient minioClient = MinioUtil.getMinioClient();
+    //MinioClient minioClient = MinioUtil.getMinioClient();
 
     @Test
     public void testKryo() throws FileNotFoundException {
@@ -67,9 +68,5 @@ public class KryoTest {
         System.out.println(directoryMeta1.toString());
     }
 
-    @Test
-    public void testMinio(){
-        minioClient.toString();
-    }
 
 }
