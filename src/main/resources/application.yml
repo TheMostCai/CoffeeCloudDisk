@@ -1,0 +1,9 @@
+kryoInstancePoolCapacity: 100
+kryoOutputPoolCapacity: 100
+kryoInputPoolCapacity: 100
+
+ipAddress: 'http://192.168.3.121'
+port: 9000
+accessKey: 'V9Yzl2Hk3hqNPTY2'
+secretKey: 'P49shk6VBUi6aIhGkWrNUfEWwjLiwcn7'
+secure: false
