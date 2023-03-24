@@ -38,9 +38,9 @@ public class KryoTest {
         Input input = inputPool.obtain();
 
         Date date = new Date();
-        HashMap<String, Long> childrenDir = new HashMap<>();
+        HashMap<String, Number> childrenDir = new HashMap<>();
         childrenDir.put("dirName", 1L);
-        HashMap<String, Long> childrenFile = new HashMap<>();
+        HashMap<String, Number> childrenFile = new HashMap<>();
         childrenFile.put("fileName", 1L);
         DirectoryMeta directoryMeta = new DirectoryMeta(100L, 1L, "456", date, 1L, childrenDir, childrenFile);
 
