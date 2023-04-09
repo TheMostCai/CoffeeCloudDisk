@@ -24,14 +24,14 @@ public class MinioUtil {
         return MinioClient.builder().endpoint(MinioConfig.ipAddress,MinioConfig.port,MinioConfig.secure).credentials(MinioConfig.accessKey,MinioConfig.secretKey).build();
     }
 
-    public static String postFile(MultipartFile multipartFile, String uuidName,MinioClient minioClient){
+    public static String postFile(MultipartFile multipartFile, String fileName,MinioClient minioClient){
         ObjectWriteResponse objectWriteResponse;
         try {
             InputStream stream = multipartFile.getInputStream();
             objectWriteResponse = minioClient.putObject(
                     PutObjectArgs.builder()
                             .bucket("coffee-cloud-disk")
-                            .object(uuidName)
+                            .object(fileName)
                             .contentType(multipartFile.getContentType())
                             .stream(stream,stream.available(),-1)
                             .build());

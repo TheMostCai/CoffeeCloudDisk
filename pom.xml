@@ -83,6 +83,13 @@
             <artifactId>minio</artifactId>
             <version>8.5.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2 -->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>2.0.26</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -100,6 +107,27 @@
                 </configuration>
                 <version>3.0.4</version>
             </plugin>
+            <!--<plugin>-->
+            <!--    <groupId>org.mybatis.generator</groupId>-->
+            <!--    <artifactId>mybatis-generator-maven-plugin</artifactId>-->
+            <!--    <version>1.4.0</version>-->
+            <!--    <executions>-->
+            <!--        <execution>-->
+            <!--            <id>Generate MyBatis Artifacts</id>-->
+            <!--            <goals>-->
+            <!--                <goal>generate</goal>-->
+            <!--            </goals>-->
+            <!--        </execution>-->
+            <!--    </executions>-->
+            <!--    <configuration>-->
+            <!--        &lt;!&ndash; 输出详细信息 &ndash;&gt;-->
+            <!--        <verbose>true</verbose>-->
+            <!--        &lt;!&ndash; 覆盖生成文件 &ndash;&gt;-->
+            <!--        <overwrite>false</overwrite>-->
+            <!--        &lt;!&ndash; 定义配置文件 &ndash;&gt;-->
+            <!--        <configurationFile>${basedir}/src/main/resources/generator-configuration.xml</configurationFile>-->
+            <!--    </configuration>-->
+            <!--</plugin>-->
         </plugins>
     </build>
     <repositories>

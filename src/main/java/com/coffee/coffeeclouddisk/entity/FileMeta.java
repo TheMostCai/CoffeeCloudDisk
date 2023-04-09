@@ -1,5 +1,6 @@
 package com.coffee.coffeeclouddisk.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serial;
@@ -31,6 +32,7 @@ public class FileMeta  implements Serializable {
     /**
      * 修改时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date modifyTime;
     /**
      * 上级文件夹元数据Id

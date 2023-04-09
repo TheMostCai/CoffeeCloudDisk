@@ -1,6 +1,8 @@
 package com.coffee.coffeeclouddisk.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,6 +15,7 @@ import java.util.Map;
  * @date 2023/3/21 18:57
  */
 @Data
+@ToString
 public class DirectoryMeta implements Serializable {
 
     @Serial
@@ -32,6 +35,7 @@ public class DirectoryMeta implements Serializable {
     /**
      * 修改时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date modifyTime;
     /**
      * 上级文件夹元数据Id
@@ -39,14 +43,16 @@ public class DirectoryMeta implements Serializable {
     private Long parentMetaId;
     /**
      * <文件夹名,文件夹元数据Id>
+     * 请使用Number类来代替Long类，否则JSON类型转换时会出现数字转为Integer类型的问题
      */
-    private Map<String,Long> childrenDirectoryMeta;
+    private Map<String,Number> childrenDirectoryMeta;
     /**
      * <文件名，文件元数据Id>
+     *     请使用Number类来代替Long类，否则JSON类型转换时会出现数字转为Integer类型的问题
      */
-    private Map<String,Long> childrenFileMeta;
+    private Map<String,Number> childrenFileMeta;
 
-    public DirectoryMeta(Long directoryMetaId, Long size, String directoryName, Date modifyTime, Long parentMetaId, Map<String, Long> childrenDirectoryMeta, Map<String, Long> childrenFileMeta) {
+    public DirectoryMeta(Long directoryMetaId, Long size, String directoryName, Date modifyTime, Long parentMetaId, Map<String, Number> childrenDirectoryMeta, Map<String, Number> childrenFileMeta) {
         this.directoryMetaId = directoryMetaId;
         this.size = size;
         this.directoryName = directoryName;
