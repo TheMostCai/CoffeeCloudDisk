@@ -6,4 +6,5 @@ package com.coffee.coffeeclouddisk.entity;
  * @date 2023/3/22 20:29
  */
 public class User {
+    private String userName;
 }
